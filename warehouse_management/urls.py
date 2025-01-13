@@ -4,9 +4,13 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
+from health_check import urls as health_urls
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('inventory.urls')),
+    
+    path('health/', include(health_urls)),
 ]
 
 if settings.DEBUG:

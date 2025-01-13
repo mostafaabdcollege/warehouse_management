@@ -1,6 +1,7 @@
 import os
 from pathlib import Path
 from dotenv import load_dotenv
+from decouple import config
 
 # Load environment variables from the .env file
 load_dotenv()
@@ -9,13 +10,17 @@ load_dotenv()
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Secret key for Django (loaded from environment or set to default)
-SECRET_KEY = os.getenv('SECRET_KEY', 'replace-this-with-a-default-key')
+SECRET_KEY = config('SECRET_KEY', default='replace-this-secret-key')
 
 # Debug mode (loaded from environment, default is False)
-DEBUG = os.getenv('DEBUG', 'False') == 'True'
+DEBUG = config('DEBUG', default=False, cast=bool)
 
 # Allowed hosts for the app (loaded from environment)
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '').split(',')
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='').split(',')
+
+# CSRF trusted origins (loaded from environment, with 'https://' prefix)
+CSRF_TRUSTED_ORIGINS = config('CSRF_TRUSTED_ORIGINS', default='').split(',')
+CSRF_TRUSTED_ORIGINS = [f"https://{domain.strip()}" for domain in CSRF_TRUSTED_ORIGINS if domain.strip()]
 
 # Installed apps for the Django project
 INSTALLED_APPS = [
@@ -25,9 +30,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'inventory',  # Your custom app (replace with actual app names)
+    'inventory',
     'bootstrap5',
-    'django_extensions',  # For extensions like shell_plus and others
+    'django_extensions',
+    'health_check',
 ]
 
 # Middleware configuration
@@ -101,7 +107,3 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Custom error pages
 HANDLER404 = 'warehouse_management.views.custom_404_view'
 HANDLER500 = 'warehouse_management.views.custom_500_view'
-
-# CSRF trusted origins (loaded from environment, with 'https://' prefix)
-CSRF_TRUSTED_ORIGINS = os.getenv('CSRF_TRUSTED_ORIGINS', '').split(',')
-CSRF_TRUSTED_ORIGINS = [f"https://{domain.strip()}" for domain in CSRF_TRUSTED_ORIGINS if domain.strip()]
