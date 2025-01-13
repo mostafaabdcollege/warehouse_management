@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Home - Warehouse Management
+{% endblock %}
+
+{% block content %}
+<div class="jumbotron text-center bg-light p-5 rounded">
+    <h1 class="display-4">Welcome to Warehouse Management System</h1>
+    <p class="lead">Easily manage your products, stock levels, and more.</p>
+    <hr class="my-4">
+    <a class="btn btn-primary btn-lg" href="{% url 'add_product' %}" role="button">Add New Product</a>
+</div>
+{% endblock %}
