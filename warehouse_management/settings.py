@@ -10,7 +10,7 @@ load_dotenv()
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Secret key for Django (loaded from environment or set to default)
-SECRET_KEY = config('SECRET_KEY', default='replace-this-secret-key')
+SECRET_KEY = config('SECRET_KEY', default='#0ej&#7x2$*2+l!e7x2+xwth0b6p49ldz-sz1vt_zi-8u+j7s9')
 
 # Debug mode (loaded from environment, default is False)
 DEBUG = config('DEBUG', default=False, cast=bool)
