@@ -9,7 +9,6 @@ db.sqlite3
 
 # Media and Static files
 media/
-staticfiles/
 
 # Environment files
 .env
