@@ -1,8 +1,17 @@
-#!/usr/bin/env python
+
 """Django's command-line utility for administrative tasks."""
 import os
 import sys
 
+from django.core.wsgi import get_wsgi_application
+
+# Vercel serverless function handler
+def handler(request, context):
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'warehouse_management.settings')
+    application = get_wsgi_application()
+
+    # Use the application to process the request
+    return application(request, context)
 
 def main():
     """Run administrative tasks."""
@@ -20,11 +29,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
-# Vercel serverless function handler
-def handler(request, context):
-    from django.core.wsgi import get_wsgi_application
-    application = get_wsgi_application()
-
-    # Use the application to process the request
-    return application(request, context)
