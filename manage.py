@@ -20,3 +20,11 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+# Vercel serverless function handler
+def handler(request, context):
+    from django.core.wsgi import get_wsgi_application
+    application = get_wsgi_application()
+
+    # Use the application to process the request
+    return application(request, context)
