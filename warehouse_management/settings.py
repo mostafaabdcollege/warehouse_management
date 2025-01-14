@@ -60,7 +60,9 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'warehouse_management.wsgi.application'
 DATABASES = {
-    'default': dj_database_url.config(default='postgres://postgres:Password@localhost:5432/warehouse_management_db')
+    'default': dj_database_url.config(
+        default=os.getenv('DATABASE_URL')
+    )
 }
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
