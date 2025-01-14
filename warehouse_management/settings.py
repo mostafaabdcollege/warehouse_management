@@ -61,7 +61,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'warehouse_management.wsgi.application'
 
 DATABASES = {
-    'default': dj_database_url.config(default='postgres://USER:PASSWORD@HOST:PORT/DB_NAME')
+    'default': dj_database_url.config(default='postgres://myuser:mypassword@localhost:5432/mydatabase')
 }
 
 AUTH_PASSWORD_VALIDATORS = [
