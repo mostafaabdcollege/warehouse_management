@@ -33,3 +33,5 @@ typing_extensions==4.12.2
 tzdata==2024.2
 whitenoise==6.8.2
 zope.interface==7.2
+django
+gunicorn
