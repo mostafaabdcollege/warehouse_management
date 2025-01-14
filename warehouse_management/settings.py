@@ -2,6 +2,7 @@ import os
 from pathlib import Path
 from dotenv import load_dotenv
 from decouple import config
+import dj_database_url
 
 load_dotenv()
 
@@ -58,14 +59,9 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'warehouse_management.wsgi.application'
-
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': dj_database_url.config(default='postgres://USER:PASSWORD@HOST:PORT/DB_NAME')
 }
-
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
     {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
