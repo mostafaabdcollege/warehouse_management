@@ -9,10 +9,9 @@ load_dotenv()
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = config('SECRET_KEY', default='#0ej&#7x2$*2+l!e7x2+xwth0b6p49ldz-sz1vt_zi-8u+j7s9')
-DEBUG = config('DEBUG', default=False, cast=bool)
-ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='').split(',')
-CSRF_TRUSTED_ORIGINS = config('CSRF_TRUSTED_ORIGINS', default='').split(',')
-CSRF_TRUSTED_ORIGINS = [f"https://{domain.strip()}" for domain in CSRF_TRUSTED_ORIGINS if domain.strip()]
+DEBUG = config('DEBUG', default=True, cast=bool)
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+CSRF_TRUSTED_ORIGINS = ['http://localhost:8000', 'http://127.0.0.1:8000']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -61,7 +60,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'warehouse_management.wsgi.application'
 
 DATABASES = {
-    'default': dj_database_url.config(default='postgres://myuser:mypassword@localhost:5432/mydatabase')
+    'default': dj_database_url.config(default='postgres://postgres:123456@localhost:5432/warehouse_db')
 }
 
 AUTH_PASSWORD_VALIDATORS = [
